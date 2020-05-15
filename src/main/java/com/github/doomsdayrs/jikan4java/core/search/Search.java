@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.doomsdayrs.jikan4java.core.Retriever;
 import com.github.doomsdayrs.jikan4java.enums.search.Types;
+import com.github.ndduc.jikan4java.helper.Debug;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -43,7 +44,7 @@ public class Search<T> extends Retriever {
     protected T t;
     protected Class aClass;
     protected String query = "";
-    private int limit = 0;
+    private int limit = 10;
 
     /**
      * Constructor of core object
@@ -54,6 +55,9 @@ public class Search<T> extends Retriever {
         super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
         this.type = type;
         this.aClass = type.getA();
+        
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, "constructor - 1 param (Type)");
     }
 
     /**
@@ -66,21 +70,33 @@ public class Search<T> extends Retriever {
         super(mapper);
         this.type = type;
         this.aClass = type.getA();
+        
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class,  "constructor - 2 params (Type, ObjectMapper");
     }
 
     public Search(Types type, OkHttpClient client) {
         super(client);
         this.type = type;
+        
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, "constructor - 2 params (Type, OkHttp");
     }
 
     public Search(Types type, JSONParser jsonParser) {
         super(jsonParser);
         this.type = type;
+        
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, "constructor - 2 params (Type, JSONParser");
     }
 
     public Search(Types type, Request.Builder builder) {
         super(builder);
         this.type = type;
+        
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, "constructor - 2 params (Type, Builder");
     }
 
 
@@ -95,6 +111,12 @@ public class Search<T> extends Retriever {
         builder.append(type);
         builder.append("?q=").append(query.replaceAll(" ", "%20"));
         if (limit != 0) builder.append("&limit=").append(limit);
+        
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
+        Debug.debug(_class, builder);
+        
         return builder;
     }
 
@@ -109,6 +131,11 @@ public class Search<T> extends Retriever {
         if (limit != 0)
             this.limit = limit;
         else throw new IndexOutOfBoundsException("This program does not accept 0s");
+        
+        
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
         return this;
     }
 
@@ -120,6 +147,10 @@ public class Search<T> extends Retriever {
      */
     public Search<T> setQuery(String title) {
         this.query = title;
+        
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
         return this;
     }
 
@@ -133,6 +164,9 @@ public class Search<T> extends Retriever {
      * @return Completable future of the process
      */
     public CompletableFuture getFirst() {
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
         if (limit > 0)
             return CompletableFuture.supplyAsync(() -> {
                 try {
@@ -142,7 +176,7 @@ public class Search<T> extends Retriever {
                     // Gets anime ID then goes to it's page
                     Request request = new Request.Builder().url(baseURL + "/" + type + "/" + ((JSONObject) jsonArray.get(0)).get("mal_id").toString()).build();
                     Response response = client.newCall(request).execute();
-                    if (response.body() != null)
+                    if (response.body() != null) 
                         return objectMapper.readValue(((JSONObject) jsonParser.parse(response.body().string())).toJSONString(), type.getB());
                     else return null;
                 } catch (IOException | ParseException e) {
@@ -158,10 +192,17 @@ public class Search<T> extends Retriever {
      * @return Completable future of the process
      */
     public CompletableFuture<T> get() {
+        
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
         return retrieve(aClass, createURL().toString());
     }
 
     public CompletableFuture getByID(int id) {
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
         return retrieve(type.getB(), baseURL + "/" + type + "/" + id);
     }
 }

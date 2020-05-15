@@ -80,7 +80,7 @@ import static com.github.doomsdayrs.jikan4java.core.Retriever.setDebugMode;
  * @author github.com/doomsdayrs
  */
 class Tester {
-    private static final String[] animes = {"Boku no Hero Academia 4th Season", "Steins;Gate", "Fullmetal Alchemist: Brotherhood", "Kimetsu no Yaiba"};
+    private static final String[] animes = {"Fate/Zero", "Angel Beat"};
     private static final String[] mangaTitles = {"Berserk", "Boku no"/*,"One punch", "Shield"*/};
     private static final Tops[] tops = {Tops.ANIME, Tops.MANGA, Tops.CHARACTERS, Tops.PEOPLE};
     private static final Days[] days = {Days.MONDAY, Days.TUESDAY, Days.WEDNESDAY, Days.THURSDAY, Days.FRIDAY, Days.UNKNOWN, Days.OTHER};
@@ -197,9 +197,9 @@ class Tester {
         // Anime
         if (types[0]) {
             AnimeSearch animeSearch;
-            for (String animeTitle : animes) {
+      //      for (String animeTitle : animes) {
                 animeSearch = new AnimeSearch();
-                animeSearch.setQuery(animeTitle);
+                animeSearch.setQuery("Fate/Zero");
 
                 progressUpdate();
                 System.out.println("\nSearching for ANIME\n");
@@ -283,9 +283,9 @@ class Tester {
                 animeUserUpdateCompletableFuture.thenAccept(Tester::p);
                 AnimeUserUpdatesPage animeUserUpdatesPage = animeUserUpdateCompletableFuture.get();
                 s();
-            }
+       //     }
         }
-
+/*
         if (types[1]) {
             MangaSearch mangaSearch;
             for (String mangaTitle : mangaTitles) {
@@ -492,7 +492,7 @@ class Tester {
             System.out.println("\nError: " + error[0]);
             System.out.println("\tJSON: " + error[1]);
             System.out.println("\tURL: " + error[2]);
-        }
+        }*/
         System.out.println("\n=== Completed ===\n");
     }
 }
