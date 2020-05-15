@@ -5,10 +5,15 @@
  */
 package com.github.doomsdayrs.jikan4java;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.AnimeSearch;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
+import com.github.doomsdayrs.jikan4java.types.main.anime.animePage.AnimePage;
 import com.github.doomsdayrs.jikan4java.types.main.anime.episodes.Episodes;
 import com.github.doomsdayrs.jikan4java.types.support.MoreInfo;
+import com.github.ndduc.jikan4java.ext.animelist.Anime_List;
+import com.github.ndduc.jikan4java.ext.animelist.Generate_List;
 import com.github.ndduc.jikan4java.helper.Debug;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -29,11 +34,16 @@ public class Main {
         
         for(String title : animes) {
             animeSearch = new AnimeSearch();
-            animeSearch.setQuery(title);
-
-            //progressUpdate();
+            Generate_List genList = new Generate_List();
+            animeSearch.setQuery(title, 10);
             Debug.debug("Initiate", "Anime Search");
-            CompletableFuture<Anime> animeCompletableFuture = animeSearch.getFirst();
+            CompletableFuture<AnimePage> animeCompletableFuture = animeSearch.get();
+            List<Anime_List> root = genList.getAnimeList(animeCompletableFuture.get().animes);
+            for(int i = 0; i < root.size(); i++) {
+                Debug.debug("TEST", root.get(i).getId() + "\t" + root.get(i).getTitle());
+            }
+            
+           // s();
             /*System.out.println(animeCompletableFuture.get().genres);
             System.out.println(animeCompletableFuture.get().genres.get(1));
             */
@@ -43,11 +53,12 @@ public class Main {
                 Debug.debug("TEST" , animeCompletableFuture.get().genres.get(i).name);
             }*/
             
-            animeCompletableFuture.thenAccept(Main::p);
-            Anime anime = animeCompletableFuture.get();
+           // animeCompletableFuture.thenAccept(Main::p);
+            //AnimePage anime = animeCompletableFuture.get();
             
-          
-            s();
+           // Debug.debug("TEST", animeCompletableFuture.get().animes);
+            
+           
             /*
             Debug.debug("Initiate", "Episode Search");
             CompletableFuture<Episodes> episodesCompletableFuture = anime.getEpisodes();
@@ -57,6 +68,9 @@ public class Main {
         }
         
     }
+    
+  
+    
     
     private static void s() throws InterruptedException {
         TimeUnit.SECONDS.sleep(4);

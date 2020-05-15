@@ -44,7 +44,7 @@ public class Search<T> extends Retriever {
     protected T t;
     protected Class aClass;
     protected String query = "";
-    private int limit = 10;
+    private int limit = 0;
 
     /**
      * Constructor of core object
@@ -58,6 +58,21 @@ public class Search<T> extends Retriever {
         
         Object _class = new Exception().getStackTrace()[0].getClassName();
         Debug.debug(_class, "constructor - 1 param (Type)");
+    }
+    
+    /**
+     *Constructor of core object
+     *@param type subType of object that should be searched for 
+     *@param limit as number of iterative elements
+     */
+    public Search(Types type, int _limit) {
+        super(new ObjectMapper().configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true));
+        this.type = type;
+        this.aClass = type.getA();
+        this.limit = _limit;
+        
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, "constructor - 2 param (Type, Int)");
     }
 
     /**
@@ -147,10 +162,26 @@ public class Search<T> extends Retriever {
      */
     public Search<T> setQuery(String title) {
         this.query = title;
-        
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
         Debug.debug(_class, method);
+        return this;
+    }
+    
+    /**
+     * Set the title and limit that will be queried
+     * 
+     * @param title Title or name of what you want
+     * @param limit as number of iterative elements that might be spawn
+     * @return This
+     */
+    public Search<T> setQuery(String title, int limit) {
+        this.query = title;
+        this.limit = limit;
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
+        Debug.debug(method, "2 parameters (title, limit)");
         return this;
     }
 

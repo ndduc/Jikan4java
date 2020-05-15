@@ -9,6 +9,7 @@ import com.github.doomsdayrs.jikan4java.enums.search.animemanga.Ratings;
 import com.github.doomsdayrs.jikan4java.enums.search.animemanga.orderby.OrderBy;
 import com.github.doomsdayrs.jikan4java.enums.search.animemanga.subtype.SubTypes;
 import com.github.doomsdayrs.jikan4java.enums.status.Stati;
+import com.github.ndduc.jikan4java.helper.Debug;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -113,6 +114,11 @@ class AnimeMangaSearch<T> extends Search<T> {
      */
     @Override
     public CompletableFuture getFirst() {
+        
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
+        
         return CompletableFuture.supplyAsync(() -> {
             try {
                 ResponseBody responseBody = super.request(createURL().toString());
@@ -137,6 +143,9 @@ class AnimeMangaSearch<T> extends Search<T> {
      */
     @Override
     public CompletableFuture<T> get() {
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
         return retrieve(aClass, createURL().toString());
     }
 
@@ -175,7 +184,26 @@ class AnimeMangaSearch<T> extends Search<T> {
      */
     @Override
     public AnimeMangaSearch<T> setQuery(String title) {
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
         super.setQuery(title);
+        return this;
+    }
+    
+    /**
+     * Sets query
+     *
+     * @param title Title or name of what you want
+     * @param limit as number of possible found titles
+     * @return This
+     */
+    @Override
+    public AnimeMangaSearch<T> setQuery(String title, int limit) {
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
+        super.setQuery(title, limit);
         return this;
     }
 

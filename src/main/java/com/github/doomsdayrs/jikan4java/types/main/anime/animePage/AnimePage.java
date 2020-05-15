@@ -2,6 +2,7 @@ package com.github.doomsdayrs.jikan4java.types.main.anime.animePage;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.ndduc.jikan4java.helper.Debug;
 
 import java.util.ArrayList;
 
@@ -43,6 +44,9 @@ public class AnimePage {
 
     @Override
     public String toString() {
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
         return "AnimePage{" +
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +
