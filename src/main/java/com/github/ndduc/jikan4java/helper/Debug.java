@@ -13,5 +13,9 @@ public class Debug {
     public static void debug(Object x, Object y) {
         System.out.println("[DEBUG]\t\t" + x + "\t" + y);
     }
-    
+    /**
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+     
+     */
 }

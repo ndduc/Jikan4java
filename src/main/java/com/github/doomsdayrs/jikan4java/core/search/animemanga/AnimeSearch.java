@@ -10,6 +10,7 @@ import com.github.doomsdayrs.jikan4java.enums.search.animemanga.subtype.SubTypes
 import com.github.doomsdayrs.jikan4java.enums.status.AnimeStati;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
 import com.github.doomsdayrs.jikan4java.types.main.anime.animePage.AnimePage;
+import com.github.ndduc.jikan4java.helper.Debug;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
@@ -61,12 +62,28 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
 
     @Override
     public CompletableFuture<Anime> getFirst() {
+        
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
         return (CompletableFuture<Anime>) super.getFirst();
     }
 
     @Override
     public AnimeSearch setQuery(String title) {
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
         super.setQuery(title);
+        return this;
+    }
+    
+    @Override
+    public AnimeSearch setQuery(String title, int limit) {
+        Object method = new Exception().getStackTrace()[0].getMethodName();
+        Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, method);
+        super.setQuery(title, limit);
         return this;
     }
 

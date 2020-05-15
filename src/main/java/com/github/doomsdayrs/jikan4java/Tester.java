@@ -199,7 +199,7 @@ class Tester {
             AnimeSearch animeSearch;
       //      for (String animeTitle : animes) {
                 animeSearch = new AnimeSearch();
-                animeSearch.setQuery("Fate/Zero");
+                animeSearch.setQuery("10087");
 
                 progressUpdate();
                 System.out.println("\nSearching for ANIME\n");
