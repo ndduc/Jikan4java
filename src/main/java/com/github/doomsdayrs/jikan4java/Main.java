@@ -25,18 +25,21 @@ import java.util.concurrent.TimeUnit;
  */
 public class Main {
     
-    private static final String [] animes = {"Fate/Zero"};
+    private static final String [] animes = {"fate/zero"};
     
     public static void main(String[] args) throws Exception{
         AnimeSearch animeSearch;
 
-        
+        /**
+         fog
+         * 
+         */
         
         for(String title : animes) {
             animeSearch = new AnimeSearch();
             Generate_List genList = new Generate_List();
             animeSearch.setQuery(title, 10);
-            Debug.debug("Initiate", "Anime Search");
+            Debug.debug("Initiate", "Anime List Search");
             CompletableFuture<AnimePage> animeCompletableFuture = animeSearch.get();
             List<Anime_List> root = genList.getAnimeList(animeCompletableFuture.get().animes);
             for(int i = 0; i < root.size(); i++) {
