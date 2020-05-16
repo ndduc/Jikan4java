@@ -8,6 +8,7 @@ package com.github.doomsdayrs.jikan4java;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.doomsdayrs.jikan4java.core.search.animemanga.AnimeSearch;
+import com.github.doomsdayrs.jikan4java.core.userlisting.AnimeUserListingSearch;
 import com.github.doomsdayrs.jikan4java.types.main.anime.Anime;
 import com.github.doomsdayrs.jikan4java.types.main.anime.animePage.AnimePage;
 import com.github.doomsdayrs.jikan4java.types.main.anime.episodes.Episodes;
@@ -30,7 +31,9 @@ public class Main {
     private static final String animes = "fate/zero";
     
     public static void main(String[] args) throws Exception{
-       printAnimeInfo(11741);
+       AnimeUserListingSearch userSearch = new AnimeUserListingSearch("kareford", "hold");
+       
+       Debug.debug("TEST", userSearch.getList().get());
     }
     
     /**
