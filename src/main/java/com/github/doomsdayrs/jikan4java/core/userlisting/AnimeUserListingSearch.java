@@ -1,5 +1,6 @@
 package com.github.doomsdayrs.jikan4java.core.userlisting;
 
+import com.github.ndduc.jikan4java.helper.Helper_UserFilterOpt;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.doomsdayrs.jikan4java.enums.Season;
 import com.github.doomsdayrs.jikan4java.enums.SortBy;
@@ -11,7 +12,7 @@ import com.github.doomsdayrs.jikan4java.types.main.user.listing.animelist.AnimeL
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.json.simple.parser.JSONParser;
-
+import com.github.ndduc.jikan4java.helper.*;
 import java.util.concurrent.CompletableFuture;
 
 /*
@@ -43,6 +44,17 @@ public class AnimeUserListingSearch extends UserListingSearch<AnimeList> {
     public AnimeUserListingSearch(String username) {
         super(username);
         setUserListFilters(AnimeListFilters.ALL);
+    }
+    
+    /**
+     * ndduc
+     *  @param mode as filter mode
+     *  Available filer options are
+     *      ALL, FIN, PLAN, DROP, HOLD
+     */
+    public AnimeUserListingSearch(String username, String mode) {
+        super(username);
+        setUserListFilters(getFiler(mode)); 
     }
 
     public AnimeUserListingSearch(OkHttpClient client, String username) {
@@ -166,5 +178,27 @@ public class AnimeUserListingSearch extends UserListingSearch<AnimeList> {
 
     public CompletableFuture<AnimeList> getList() {
         return retrieve(AnimeList.class, baseURL + "/user/" + username + this.createURL());
+    }
+    
+    /**
+     *  Ndduc
+     *  allowing user to specified the type of search result
+     */
+    
+    private AnimeListFilters getFiler(String mode) {
+        if(mode.equalsIgnoreCase(Helper_UserFilterOpt.all)) {
+            return AnimeListFilters.ALL;
+        } else if (mode.equalsIgnoreCase(Helper_UserFilterOpt.fin)) {
+            return AnimeListFilters.COMPLETED;
+        } else if (mode.equalsIgnoreCase(Helper_UserFilterOpt.plan)) {
+            return AnimeListFilters.PLANTOWATCH;
+        } else if (mode.equalsIgnoreCase(Helper_UserFilterOpt.hold)) {
+            return AnimeListFilters.ONHOLD;
+        } else if (mode.equalsIgnoreCase(Helper_UserFilterOpt.drop)) {
+            return AnimeListFilters.DROPPED;
+        } else {
+            return null;
+        }
+        
     }
 }
