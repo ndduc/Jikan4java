@@ -56,8 +56,8 @@ public class Search<T> extends Retriever {
         this.type = type;
         this.aClass = type.getA();
         
-        Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, "constructor - 1 param (Type)");
+       /* Object _class = new Exception().getStackTrace()[0].getClassName();
+        Debug.debug(_class, "constructor - 1 param (Type)");*/
     }
     
     /**
@@ -70,9 +70,9 @@ public class Search<T> extends Retriever {
         this.type = type;
         this.aClass = type.getA();
         this.limit = _limit;
-        
+        /*
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, "constructor - 2 param (Type, Int)");
+        Debug.debug(_class, "constructor - 2 param (Type, Int)");*/
     }
 
     /**
@@ -85,33 +85,33 @@ public class Search<T> extends Retriever {
         super(mapper);
         this.type = type;
         this.aClass = type.getA();
-        
+        /*
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class,  "constructor - 2 params (Type, ObjectMapper");
+        Debug.debug(_class,  "constructor - 2 params (Type, ObjectMapper");*/
     }
 
     public Search(Types type, OkHttpClient client) {
         super(client);
         this.type = type;
-        
+        /*
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, "constructor - 2 params (Type, OkHttp");
+        Debug.debug(_class, "constructor - 2 params (Type, OkHttp");*/
     }
 
     public Search(Types type, JSONParser jsonParser) {
         super(jsonParser);
         this.type = type;
-        
+        /*
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, "constructor - 2 params (Type, JSONParser");
+        Debug.debug(_class, "constructor - 2 params (Type, JSONParser");*/
     }
 
     public Search(Types type, Request.Builder builder) {
         super(builder);
         this.type = type;
-        
+        /*
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, "constructor - 2 params (Type, Builder");
+        Debug.debug(_class, "constructor - 2 params (Type, Builder");*/
     }
 
 
@@ -126,12 +126,12 @@ public class Search<T> extends Retriever {
         builder.append(type);
         builder.append("?q=").append(query.replaceAll(" ", "%20"));
         if (limit != 0) builder.append("&limit=").append(limit);
-        
+        /*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
         Debug.debug(_class, method);
         Debug.debug(_class, builder);
-        
+        */
         return builder;
     }
 
@@ -147,10 +147,10 @@ public class Search<T> extends Retriever {
             this.limit = limit;
         else throw new IndexOutOfBoundsException("This program does not accept 0s");
         
-        
+        /*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         return this;
     }
 
@@ -161,10 +161,10 @@ public class Search<T> extends Retriever {
      * @return This
      */
     public Search<T> setQuery(String title) {
-        this.query = title;
+        this.query = title;/*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         return this;
     }
     
@@ -177,11 +177,11 @@ public class Search<T> extends Retriever {
      */
     public Search<T> setQuery(String title, int limit) {
         this.query = title;
-        this.limit = limit;
+        this.limit = limit;/*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
         Debug.debug(_class, method);
-        Debug.debug(method, "2 parameters (title, limit)");
+        Debug.debug(method, "2 parameters (title, limit)");*/
         return this;
     }
 
@@ -194,10 +194,10 @@ public class Search<T> extends Retriever {
      *
      * @return Completable future of the process
      */
-    public CompletableFuture getFirst() {
+    public CompletableFuture getFirst() {/*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         if (limit > 0)
             return CompletableFuture.supplyAsync(() -> {
                 try {
@@ -223,17 +223,17 @@ public class Search<T> extends Retriever {
      * @return Completable future of the process
      */
     public CompletableFuture<T> get() {
-        
+        /*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         return retrieve(aClass, createURL().toString());
     }
 
-    public CompletableFuture getByID(int id) {
+    public CompletableFuture getByID(int id) {/*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         return retrieve(type.getB(), baseURL + "/" + type + "/" + id);
     }
 }

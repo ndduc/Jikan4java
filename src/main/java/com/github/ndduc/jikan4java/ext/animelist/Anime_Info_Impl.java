@@ -17,28 +17,29 @@ import java.util.concurrent.ExecutionException;
  * @author ndduc
  */
 public class Anime_Info_Impl implements Anime_Info{
-    private int id;
+    private int id;/*
     AnimeSearch animeSearch;
     CompletableFuture<Anime> cfAnime;
-    Anime ani;
+    Anime ani;*/
     public Anime_Info_Impl(int id) {
+        Debug.debug("Mutation Check", id);
         this.id = id;
     }
     
     @Override
     public Anime getAnime() {
         try {
-            animeSearch = new AnimeSearch();
-            cfAnime = animeSearch.getByID(getId());
-            ani = cfAnime.get();
+            AnimeSearch animeSearch = new AnimeSearch();
+            CompletableFuture<Anime> cfAnime = animeSearch.getByID(getId());
+            Anime ani = cfAnime.get();
             return ani;
         } catch (InterruptedException e) {
-            Debug.debug("Exception", "Interrupted");
-           // e.printStackTrace();
+            Debug.debug("Exception in Anime_Info_Impl", "Interrupted");
+            e.printStackTrace();
            return null;
         } catch (ExecutionException e) {
-            Debug.debug("Exception", "Execution");
-            //e.printStackTrace();
+            Debug.debug("Exception in Anime_Info_Impl", "Execution");
+            e.printStackTrace();
             return null;
         }
     }
