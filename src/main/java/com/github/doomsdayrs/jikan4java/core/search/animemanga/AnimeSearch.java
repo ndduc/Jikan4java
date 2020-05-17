@@ -62,27 +62,27 @@ public class AnimeSearch extends AnimeMangaSearch<AnimePage> {
 
     @Override
     public CompletableFuture<Anime> getFirst() {
-        
+        /*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         return (CompletableFuture<Anime>) super.getFirst();
     }
 
     @Override
-    public AnimeSearch setQuery(String title) {
+    public AnimeSearch setQuery(String title) {/*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         super.setQuery(title);
         return this;
     }
     
     @Override
-    public AnimeSearch setQuery(String title, int limit) {
+    public AnimeSearch setQuery(String title, int limit) {/*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         super.setQuery(title, limit);
         return this;
     }

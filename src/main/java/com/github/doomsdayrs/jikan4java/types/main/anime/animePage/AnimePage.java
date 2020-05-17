@@ -43,10 +43,12 @@ public class AnimePage {
     public int last_page;
 
     @Override
-    public String toString() {
+    public String toString() {/*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
+        
+        
         return "AnimePage{" +
                 "request_hash='" + request_hash + '\'' +
                 ", request_cached=" + request_cached +

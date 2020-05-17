@@ -114,10 +114,10 @@ class AnimeMangaSearch<T> extends Search<T> {
      */
     @Override
     public CompletableFuture getFirst() {
-        
+        /*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         
         return CompletableFuture.supplyAsync(() -> {
             try {
@@ -142,10 +142,10 @@ class AnimeMangaSearch<T> extends Search<T> {
      * @return Completable future of the process
      */
     @Override
-    public CompletableFuture<T> get() {
+    public CompletableFuture<T> get() {/*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         return retrieve(aClass, createURL().toString());
     }
 
@@ -183,10 +183,10 @@ class AnimeMangaSearch<T> extends Search<T> {
      * @return This
      */
     @Override
-    public AnimeMangaSearch<T> setQuery(String title) {
+    public AnimeMangaSearch<T> setQuery(String title) {/*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         super.setQuery(title);
         return this;
     }
@@ -199,10 +199,10 @@ class AnimeMangaSearch<T> extends Search<T> {
      * @return This
      */
     @Override
-    public AnimeMangaSearch<T> setQuery(String title, int limit) {
+    public AnimeMangaSearch<T> setQuery(String title, int limit) {/*
         Object method = new Exception().getStackTrace()[0].getMethodName();
         Object _class = new Exception().getStackTrace()[0].getClassName();
-        Debug.debug(_class, method);
+        Debug.debug(_class, method);*/
         super.setQuery(title, limit);
         return this;
     }
